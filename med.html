@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medicat Frontend Structure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../medicat.CSS">
+</head>
+<body>
+  <header role="banner">
+    <img src="#" alt="Medicat Logo" width="60" height="60" aria-label="Medicat Logo">
+    <h1>Medicat</h1>
+    <form aria-label="Global Search" role="search">
+      <label for="global-search">Search:</label>
+      <input type="search" id="global-search" name="global-search" placeholder="Search Medicat...">
+      <button type="submit">Go</button>
+    </form>
+    <button type="button" aria-label="Emergency Quick Alert" style="font-size:1.5em;">🚨 Emergency</button>
+    <nav aria-label="Notifications">
+      <a href="#notifications" aria-label="View Notifications">🔔</a>
+    </nav>
+    <nav role="navigation" aria-label="Main Navigation">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#feed">Feed</a></li>
+        <li><a href="#directory">Doctors</a></li>
+        <li><a href="#chat">Chat</a></li>
+        <li><a href="#training">Training</a></li>
+        <li><a href="#medicine">Medicines</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#emergency">Emergency</a></li>
+        <li><a href="#settings">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main role="main">
+    <!-- AUTHENTICATION SYSTEM -->
+    <section id="auth" aria-label="Authentication">
+      <article>
+        <h2>Login</h2>
+        <form aria-label="Login Form">
+          <label for="login-username">Username or Email:</label>
+          <input type="text" id="login-username" name="login-username" required>
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" name="login-password" required>
+          <button type="submit">Login</button>
+          <a href="#reset-password">Forgot Password?</a>
+        </form>
+      </article>
+      <article>
+        <h2>Sign Up</h2>
+        <form aria-label="Signup Form">
+          <label for="signup-name">Name:</label>
+          <input type="text" id="signup-name" name="signup-name" required>
+          <label for="signup-email">Email:</label>
+          <input type="email" id="signup-email" name="signup-email" required>
+          <label for="signup-password">Password:</label>
+          <input type="password" id="signup-password" name="signup-password" required>
+          <label for="signup-confirm">Confirm Password:</label>
+          <input type="password" id="signup-confirm" name="signup-confirm" required>
+          <button type="submit">Sign Up</button>
+        </form>
+      </article>
+      <article>
+        <h2>Pet Owner Registration</h2>
+        <form aria-label="Pet Owner Registration">
+          <label for="pet-name">Pet Name:</label>
+          <input type="text" id="pet-name" name="pet-name" required>
+          <label for="pet-breed">Breed:</label>
+          <input type="text" id="pet-breed" name="pet-breed" required>
+          <label for="pet-vaccination">Vaccination History:</label>
+          <textarea id="pet-vaccination" name="pet-vaccination"></textarea>
+          <button type="submit">Register Pet</button>
+        </form>
+      </article>
+      <article>
+        <h2>Doctor Registration</h2>
+        <form aria-label="Doctor Registration">
+          <label for="doctor-specialization">Specialization:</label>
+          <input type="text" id="doctor-specialization" name="doctor-specialization" required>
+          <label for="doctor-license">License Number:</label>
+          <input type="text" id="doctor-license" name="doctor-license" required>
+          <button type="submit">Register Doctor</button>
+        </form>
+      </article>
+      <article id="reset-password">
+        <h2>Password Reset</h2>
+        <form aria-label="Password Reset">
+          <label for="reset-email">Email:</label>
+          <input type="email" id="reset-email" name="reset-email" required>
+          <button type="submit">Reset Password</button>
+        </form>
+      </article>
+    </section>
+
+    <!-- USER & PET PROFILES -->
+    <section id="profiles" aria-label="User & Pet Profiles">
+      <header>
+        <img src="#" alt="User Photo" width="80" height="80">
+        <img src="#" alt="Pet Photo" width="80" height="80">
+      </header>
+      <section aria-label="Personal Info">
+        <h2>User Info</h2>
+        <p><strong>Bio:</strong> Pet lover from New York.</p>
+        <p><strong>Location:</strong> New York, USA</p>
+        <ul aria-label="Achievements">
+          <li><img src="#" alt="Vaccination badge" width="30" height="30"> Vaccinated</li>
+          <li><img src="#" alt="Training badge" width="30" height="30"> Completed Training</li>
+        </ul>
+        <progress value="80" max="100" aria-label="Pet Health Progress">80%</progress>
+        <progress value="60" max="100" aria-label="Training Progress">60%</progress>
+        <ul aria-label="Connections">
+          <li>User123</li>
+          <li>User456</li>
+        </ul>
+      </section>
+      <aside aria-label="Pet Info">
+        <h3>Pet Details</h3>
+        <p><strong>Age:</strong> 3 years</p>
+        <p><strong>Breed:</strong> Golden Retriever</p>
+        <p><strong>Vaccination:</strong> Rabies, Parvo</p>
+      </aside>
+    </section>
+
+    <!-- SOCIAL MEDIA FEED -->
+    <section id="feed" aria-label="Social Media Feed">
+      <nav aria-label="Stories/Reels">
+        <ul>
+          <li>
+            <figure>
+              <img src="#" alt="Pet Story" width="60" height="60" style="border-radius:50%;">
+              <figcaption>Rex</figcaption>
+            </figure>
+          </li>
+          <!-- More stories... -->
+        </ul>
+      </nav>
+      <section aria-label="Trending">
+        <h2>Trending</h2>
+        <article>
+          <figure>
+            <img src="#" alt="Trending Pet" width="200" height="150">
+            <figcaption>#HappyDog</figcaption>
+          </figure>
+          <p>Rex playing in the park!</p>
+        </article>
+      </section>
+      <article>
+        <figure>
+          <img src="#" alt="Pet Post" width="200" height="150">
+          <figcaption>Rex's new trick!</figcaption>
+        </figure>
+        <p>Just learned to fetch!</p>
+        <div>
+          <button aria-label="Like">👍 Like</button>
+          <button aria-label="Comment">💬 Comment</button>
+          <button aria-label="Share">🔄 Share</button>
+        </div>
+        <ul aria-label="Comments">
+          <li><strong>User123:</strong> So cute!</li>
+          <li><strong>User456:</strong> Amazing!</li>
+        </ul>
+      </article>
+      <!-- More posts... -->
+    </section>
+
+    <!-- CHAT & MESSAGING -->
+    <section id="chat" aria-label="Chat & Messaging">
+      <aside aria-label="Recent Chats">
+        <ul>
+          <li><img src="#" alt="Doctor avatar" width="40" height="40"> Dr. Jane Doe</li>
+          <li><img src="#" alt="User avatar" width="40" height="40"> User123</li>
+        </ul>
+      </aside>
+      <section aria-label="Active Conversation">
+        <div role="log" aria-live="polite">
+          <div><p><strong>User:</strong> Hello!</p><time datetime="2025-08-27T10:00">10:00 AM</time></div>
+          <div><p><strong>Doctor:</strong> Hi, how can I help?</p><time datetime="2025-08-27T10:01">10:01 AM</time></div>
+        </div>
+        <form aria-label="Chat Input">
+          <label for="chat-message">Message:</label>
+          <textarea id="chat-message" name="chat-message" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+      <article aria-label="Group Chat">
+        <h3>Pet Owners Group</h3>
+        <div>
+          <p><strong>UserA:</strong> Welcome to the group!</p>
+          <p><strong>UserB:</strong> Thanks!</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- DOCTOR DIRECTORY -->
+    <section id="directory" aria-label="Doctor Directory">
+      <form aria-label="Doctor Search">
+        <label for="doctor-search">Search Doctors:</label>
+        <input type="search" id="doctor-search" name="doctor-search" placeholder="Search by name or specialty">
+        <button type="submit">Search</button>
+      </form>
+      <table aria-label="Doctor List">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Country</th>
+            <th>Contact</th>
+            <th>Verified</th>
+            <th>Availability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#doctor-profile">Dr. Jane Doe</a></td>
+            <td>Veterinary Medicine</td>
+            <td>USA</td>
+            <td><button type="button" aria-label="Contact Dr. Jane Doe">Contact</button></td>
+            <td><span aria-label="Verified Doctor">✔️</span></td>
+            <td><span role="status" aria-label="Available">🟢 Available</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <section id="doctor-profile" aria-label="Doctor Profile">
+        <h3>Dr. Jane Doe</h3>
+        <img src="#" alt="Doctor profile photo" width="80" height="80">
+        <p><strong>Experience:</strong> 10 years</p>
+        <p><strong>Education:</strong> DVM, Harvard</p>
+        <p><strong>Reviews:</strong> ★★★★☆</p>
+        <button type="button" aria-label="Contact Dr. Jane Doe">Contact</button>
+      </section>
+    </section>
+
+    <!-- MEDICINE & TRAINING SECTION -->
+    <section id="medicine" aria-label="Medicine & Training">
+      <h2>Medicine Catalog</h2>
+      <article>
+        <h3>Paracetamol <abbr title="Non-Steroidal Anti-Inflammatory Drug">NSAID</abbr></h3>
+        <dl>
+          <dt>Dosage</dt>
+          <dd>10mg</dd>
+          <dt>Precautions</dt>
+          <dd><mark>May cause drowsiness</mark></dd>
+        </dl>
+        <details>
+          <summary>Treatment Details</summary>
+          <p>For fever and pain relief. Consult your doctor before use.</p>
+        </details>
+      </article>
+      <video controls aria-label="Training Video" width="320" height="240">
+        <source src="#" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <iframe src="#" title="Live Training Session" width="320" height="240" aria-label="Live Training"></iframe>
+    </section>
+
+    <!-- AI CHATBOT ASSISTANT -->
+    <section id="chatbot" aria-label="AI Chatbot Assistant">
+      <h2>Info Assistant</h2>
+      <form aria-label="Chatbot Query">
+        <label for="chatbot-query">Ask a question:</label>
+        <input type="text" id="chatbot-query" name="chatbot-query">
+        <button type="submit">Ask</button>
+      </form>
+      <output aria-label="Chatbot Response">Chatbot responses will appear here.</output>
+      <ul aria-label="Example Queries">
+        <li>What medicine should I give my dog for fever?</li>
+        <li>How to train a puppy?</li>
+        <li>What to do in an emergency?</li>
+      </ul>
+      <div aria-label="Conversation History">
+        <!-- Chatbot conversation history here -->
+      </div>
+    </section>
+
+    <!-- EMERGENCY ALERT SYSTEM -->
+    <section id="emergency" aria-label="Emergency Alert">
+      <h2>Emergency Alert</h2>
+      <button type="button" aria-label="Send Emergency Alert" style="font-size:2em;">🚨 Emergency Alert</button>
+      <dialog aria-label="Alert Confirmation">
+        <p>Are you sure you want to send an emergency alert?</p>
+        <button>Confirm</button>
+        <button>Cancel</button>
+      </dialog>
+      <address>
+        <strong>Nearest Hospital:</strong> City Vet Hospital, 123-456-7890<br>
+        <strong>Doctor:</strong> Dr. Jane Doe, 987-654-3210
+      </address>
+      <p>Your location will be shared with emergency contacts.</p>
+      <audio controls aria-label="Emergency Alarm">
+        <source src="#" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <!-- COMMUNITY & GROUPS -->
+    <section id="community" aria-label="Community & Groups">
+      <h2>Groups & Communities</h2>
+      <ul>
+        <li>Golden Retriever Owners <button type="button">Join</button></li>
+        <li>Puppy Training <button type="button">Join</button></li>
+        <li>Pet Health <button type="button">Join</button></li>
+      </ul>
+      <article>
+        <h3>Upcoming Event</h3>
+        <time datetime="2025-09-10">Sep 10, 2025</time>
+        <p>Free vaccination camp for pets.</p>
+      </article>
+    </section>
+
+    <!-- NOTIFICATIONS & ALERTS -->
+    <section id="notifications" aria-label="Notification Center">
+      <h2>Notifications</h2>
+      <ul>
+        <li>Friend request from User123 <time datetime="2025-08-27T10:00">10:00 AM</time></li>
+        <li>Medicine reminder: Paracetamol <meter value="0.5">50%</meter> <time datetime="2025-08-27T09:00">09:00 AM</time></li>
+        <li>Doctor update: Dr. Jane Doe is now available <time datetime="2025-08-27T08:30">08:30 AM</time></li>
+      </ul>
+    </section>
+
+    <!-- SETTINGS & CUSTOMIZATION -->
+    <section id="settings" aria-label="Settings & Customization">
+      <h2>Settings</h2>
+      <form aria-label="Account Settings">
+        <label for="privacy">Privacy:</label>
+        <select id="privacy" name="privacy">
+          <option value="public">Public</option>
+          <option value="private">Private</option>
+        </select>
+        <label for="notifications-toggle">Notifications:</label>
+        <input type="checkbox" id="notifications-toggle" name="notifications-toggle" checked>
+      </form>
+      <form aria-label="Theme Settings">
+        <label for="theme-toggle">Theme:</label>
+        <select id="theme-toggle" name="theme-toggle">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </form>
+      <form aria-label="Language Selection">
+        <label for="language">Language:</label>
+        <select id="language" name="language">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+        </select>
+      </form>
+      <form aria-label="Accessibility Preferences">
+        <label for="font-size">Font Size:</label>
+        <input type="range" id="font-size" name="font-size" min="12" max="24" value="16">
+        <label for="screen-reader">Screen Reader:</label>
+        <input type="checkbox" id="screen-reader" name="screen-reader">
+      </form>
+    </section>
+
+    <!-- EXTRAS -->
+    <section id="extras" aria-label="Extras">
+      <h2>Extras</h2>
+      <canvas id="activity-chart" width="400" height="200" aria-label="Pet Activity Chart"></canvas>
+      <blockquote cite="https://medicat.com/testimonials">
+        "Medicat helped me save my pet's life!" – <cite>User456</cite>
+      </blockquote>
+    </section>
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer role="contentinfo">
+    <p>&copy; 2025 Medicat. All rights reserved.</p>
+    <nav aria-label="Footer Links">
+      <ul>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#privacy">Privacy Policy</a></li>
+        <li><a href="#social">Social Media</a></li>
+      </ul>
+        </nav>
+  </footer>
+</body>
+</html>

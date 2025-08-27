@@ -1,0 +1,822 @@
+/* =========================
+   Medicat CSS Theme & Layout
+   ========================= */
+
+/* 1. Theme Tokens & Global Styles */
+:root {
+  --color-bg: #f8fafc;
+  --color-bg-alt: #fff;
+  --color-primary: #2b7cff;
+  --color-primary-dark: #1a4fa0;
+  --color-secondary: #ffb347;
+  --color-danger: #e53e3e;
+  --color-success: #38a169;
+  --color-info: #3182ce;
+  --color-warning: #f6ad55;
+  --color-muted: #718096;
+  --color-border: #e2e8f0;
+  --color-card: #fff;
+  --color-dark: #222;
+  --color-light: #f8fafc;
+  --color-focus: #2b7cff;
+  --color-badge: #ffd700;
+  --color-shadow: rgba(44,62,80,0.08);
+
+  --font-main: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2rem;
+  --font-weight-bold: 700;
+  --font-weight-normal: 400;
+
+  --radius: 0.75rem;
+  --radius-sm: 0.375rem;
+  --radius-lg: 1.5rem;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  --transition: 0.2s cubic-bezier(.4,0,.2,1);
+  --shadow-card: 0 2px 8px var(--color-shadow);
+
+  /* Dark theme tokens */
+  --color-bg-dark: #181a20;
+  --color-bg-alt-dark: #23262f;
+  --color-card-dark: #23262f;
+  --color-border-dark: #2c2f36;
+  --color-primary-dark: #2b7cff;
+  --color-muted-dark: #a0aec0;
+  --color-light-dark: #222;
+  --color-dark-dark: #f8fafc;
+}
+
+/* Dark theme override */
+.theme-dark {
+  --color-bg: var(--color-bg-dark);
+  --color-bg-alt: var(--color-bg-alt-dark);
+  --color-card: var(--color-card-dark);
+  --color-border: var(--color-border-dark);
+  --color-muted: var(--color-muted-dark);
+  --color-light: var(--color-light-dark);
+  --color-dark: var(--color-dark-dark);
+}
+
+/* 2. Reset & Base */
+html {
+  font-size: var(--font-size-base);
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-dark);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+img, video, iframe {
+  max-width: 100%;
+  display: block;
+  border-radius: var(--radius-sm);
+}
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  border: 0;
+}
+.u-hidden { display: none !important; }
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-md);
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -var(--space-sm);
+  margin-right: -var(--space-sm);
+}
+.gap-xs { gap: var(--space-xs); }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.stack > * + * { margin-top: var(--space-md); }
+
+/* 3. Header & Navigation */
+header[role="banner"] {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg-alt);
+  box-shadow: 0 2px 8px var(--color-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+}
+header img[alt*="Logo"] {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  margin-right: var(--space-sm);
+}
+header h1 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 var(--space-md) 0 0;
+}
+header form[role="search"] {
+  flex: 1;
+  max-width: 320px;
+  margin: 0 var(--space-md);
+  display: flex;
+  align-items: center;
+}
+header input[type="search"] {
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  background: var(--color-bg);
+  margin-right: var(--space-xs);
+}
+header button[aria-label*="Emergency"] {
+  background: linear-gradient(90deg, #ff4e50, #f9d423);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-lg);
+  padding: var(--space-sm) var(--space-lg);
+  box-shadow: 0 2px 8px var(--color-danger);
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--color-danger); }
+  70% { box-shadow: 0 0 0 10px rgba(229,62,62,0); }
+  100% { box-shadow: 0 0 0 0 var(--color-danger); }
+}
+nav[role="navigation"], nav[aria-label="Main Navigation"] ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav[role="navigation"] ul li a {
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-dark);
+  transition: background var(--transition), color var(--transition);
+}
+nav[role="navigation"] ul li a:hover,
+nav[role="navigation"] ul li a:focus {
+  background: var(--color-primary);
+  color: #fff;
+}
+nav[aria-label="Notifications"] a {
+  position: relative;
+  font-size: var(--font-size-lg);
+  margin-left: var(--space-md);
+}
+nav[aria-label="Notifications"] a::after {
+  content: '';
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: var(--color-danger);
+  border-radius: 50%;
+  position: absolute;
+  top: 0; right: -6px;
+}
+
+/* 4. Main Layout & Responsive Grid */
+main[role="main"] {
+  display: block;
+  padding: var(--space-md) 0;
+  background: var(--color-bg);
+}
+@media (min-width: 768px) {
+  main[role="main"] {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: var(--space-lg);
+  }
+  section[id="feed"] {
+    grid-column: 2;
+  }
+  section[id="chat"], section[id="profiles"], section[id="directory"], section[id="medicine"], section[id="community"], section[id="notifications"], section[id="settings"], section[id="chatbot"], section[id="emergency"], section[id="extras"] {
+    grid-column: 1 / span 3;
+  }
+}
+
+/* 5. Footer */
+footer[role="contentinfo"] {
+  background: var(--color-bg-alt);
+  color: var(--color-muted);
+  text-align: center;
+  padding: var(--space-md) var(--space-sm);
+  border-top: 1px solid var(--color-border);
+}
+footer nav ul {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 0 0;
+}
+footer nav ul li a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+}
+
+/* 6. Forms, Inputs & Buttons */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  background: var(--color-card);
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-md);
+}
+label {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+}
+input, select, textarea {
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-base);
+  background: var(--color-bg);
+  transition: border var(--transition);
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+input:disabled, button:disabled {
+  background: var(--color-bg-alt);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}
+button, input[type="submit"] {
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+button:hover, button:focus {
+  background: var(--color-primary-dark);
+  box-shadow: 0 2px 8px var(--color-shadow);
+}
+button[aria-label*="Emergency"] {
+  font-size: var(--font-size-lg);
+  background: linear-gradient(90deg, #ff4e50, #f9d423);
+  color: #fff;
+  box-shadow: 0 2px 8px var(--color-danger);
+  animation: pulse 1.5s infinite;
+}
+
+/* 7. Profile & Achievements */
+section[id="profiles"] header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+section[id="profiles"] img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+}
+section[id="profiles"] ul[aria-label="Achievements"] {
+  display: flex;
+  gap: var(--space-sm);
+  margin: var(--space-sm) 0;
+}
+section[id="profiles"] ul[aria-label="Achievements"] li {
+  background: var(--color-badge);
+  color: var(--color-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  box-shadow: 0 1px 4px var(--color-shadow);
+}
+progress, meter {
+  width: 100%;
+  height: 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-alt);
+  margin-bottom: var(--space-sm);
+}
+progress::-webkit-progress-bar {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+}
+progress::-webkit-progress-value {
+  background: var(--color-success);
+  border-radius: var(--radius-sm);
+}
+meter::-webkit-meter-bar {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+}
+meter::-webkit-meter-optimum-value {
+  background: var(--color-success);
+}
+meter::-webkit-meter-suboptimum-value {
+  background: var(--color-warning);
+}
+meter::-webkit-meter-even-less-good-value {
+  background: var(--color-danger);
+}
+
+/* 8. Social Feed & Post Cards */
+section[id="feed"] nav[aria-label="Stories/Reels"] ul {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+section[id="feed"] nav[aria-label="Stories/Reels"] img {
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  width: 60px; height: 60px;
+  object-fit: cover;
+}
+section[id="feed"] article, section[id="feed"] section[aria-label="Trending"] article {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+section[id="feed"] figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+section[id="feed"] figcaption {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+  margin-top: var(--space-xs);
+}
+section[id="feed"] div {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+section[id="feed"] ul[aria-label="Comments"] {
+  margin-top: var(--space-sm);
+  padding-left: var(--space-md);
+  list-style: disc;
+  color: var(--color-muted);
+}
+
+/* 9. Chat UI */
+section[id="chat"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+section[id="chat"] aside[aria-label="Recent Chats"] ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+section[id="chat"] aside img {
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  object-fit: cover;
+  margin-right: var(--space-xs);
+}
+section[id="chat"] section[aria-label="Active Conversation"] {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  max-height: 350px;
+  overflow-y: auto;
+}
+section[id="chat"] div[role="log"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+section[id="chat"] div[role="log"] > div {
+  align-self: flex-start;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  margin-bottom: var(--space-xs);
+  max-width: 70%;
+}
+section[id="chat"] div[role="log"] > div:nth-child(even) {
+  align-self: flex-end;
+  background: var(--color-primary);
+  color: #fff;
+}
+section[id="chat"] form {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+section[id="chat"] textarea {
+  flex: 1;
+  min-height: 40px;
+  resize: vertical;
+}
+section[id="chat"] article[aria-label="Group Chat"] {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+/* 10. Doctor Directory */
+section[id="directory"] form {
+  margin-bottom: var(--space-md);
+}
+section[id="directory"] table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-md);
+}
+section[id="directory"] th, section[id="directory"] td {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+section[id="directory"] th {
+  background: var(--color-bg-alt);
+  font-weight: var(--font-weight-bold);
+}
+section[id="directory"] td span[aria-label="Verified Doctor"] {
+  color: var(--color-success);
+  font-size: var(--font-size-lg);
+}
+section[id="directory"] td span[role="status"] {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-success);
+}
+section[id="directory"] section[aria-label="Doctor Profile"] {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+/* 11. Medicine & Training */
+section[id="medicine"] article {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+section[id="medicine"] abbr {
+  border-bottom: 1px dotted var(--color-muted);
+  cursor: help;
+}
+section[id="medicine"] dl {
+  margin: var(--space-sm) 0;
+}
+section[id="medicine"] dt {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+section[id="medicine"] dd {
+  margin: 0 0 var(--space-xs) var(--space-md);
+}
+section[id="medicine"] .warning {
+  color: var(--color-danger);
+  background: #fff5f5;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+}
+section[id="medicine"] .info {
+  color: var(--color-info);
+  background: #ebf8ff;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+}
+section[id="medicine"] details {
+  margin-top: var(--space-sm);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+}
+section[id="medicine"] summary {
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+section[id="medicine"] video, section[id="medicine"] iframe {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-sm);
+}
+
+/* 12. AI Chatbot Panel */
+section[id="chatbot"] {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  position: relative;
+}
+section[id="chatbot"] form {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+section[id="chatbot"] input[type="text"] {
+  flex: 1;
+}
+section[id="chatbot"] output {
+  display: block;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  min-height: 2em;
+}
+section[id="chatbot"] ul[aria-label="Example Queries"] {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-sm);
+}
+section[id="chatbot"] ul[aria-label="Example Queries"] li {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+section[id="chatbot"] ul[aria-label="Example Queries"] li:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+section[id="chatbot"] div[aria-label="Conversation History"] {
+  max-height: 120px;
+  overflow-y: auto;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+}
+
+/* 13. Emergency Alert & Dialog */
+section[id="emergency"] button[aria-label*="Emergency"] {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: 200;
+  background: linear-gradient(90deg, #ff4e50, #f9d423);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-xl);
+  padding: var(--space-md) var(--space-xl);
+  box-shadow: 0 2px 16px var(--color-danger);
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+section[id="emergency"] dialog[aria-label="Alert Confirmation"] {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 24px var(--color-danger);
+  padding: var(--space-lg);
+  z-index: 300;
+  min-width: 280px;
+  border: none;
+}
+section[id="emergency"] dialog button {
+  margin: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  border: none;
+  font-weight: var(--font-weight-bold);
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+}
+section[id="emergency"] address {
+  font-style: normal;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  margin: var(--space-sm) 0;
+}
+section[id="emergency"] audio {
+  width: 100%;
+  margin-top: var(--space-sm);
+}
+
+/* 14. Community & Groups */
+section[id="community"] ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+section[id="community"] ul li {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+section[id="community"] ul li button {
+  margin-left: var(--space-sm);
+  background: var(--color-success);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+section[id="community"] article {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+section[id="community"] time {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+}
+
+/* 15. Notifications & Alerts */
+section[id="notifications"] ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+section[id="notifications"] ul li {
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+}
+section[id="notifications"] time {
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+}
+section[id="notifications"] meter {
+  width: 60px;
+  height: 0.5rem;
+  margin-left: var(--space-sm);
+}
+
+/* 16. Settings & Customization */
+section[id="settings"] form {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+section[id="settings"] label {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
+}
+section[id="settings"] select, section[id="settings"] input[type="range"], section[id="settings"] input[type="checkbox"] {
+  margin-top: var(--space-xs);
+}
+
+/* 17. Extras */
+section[id="extras"] canvas {
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+}
+section[id="extras"] blockquote {
+  background: var(--color-bg-alt);
+  border-left: 4px solid var(--color-primary);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-style: italic;
+  color: var(--color-muted);
+  margin: var(--space-md) 0;
+}
+section[id="extras"] cite {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+/* 18. Utility Classes */
+.hide { display: none !important; }
+.show { display: block !important; }
+.gap { gap: var(--space-md); }
+.flex { display: flex; }
+.grid { display: grid; }
+.text-center { text-align: center; }
+.text-muted { color: var(--color-muted); }
+.rounded { border-radius: var(--radius-lg); }
+.shadow { box-shadow: var(--shadow-card); }
+
+/* 19. Responsive Images */
+img, video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* 20. Accessible Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* 21. Motion & Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* 22. Print Styles */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  header, nav, footer, section[id="chat"], section[id="chatbot"], section[id="community"], section[id="notifications"], section[id="settings"], section[id="extras"] {
+    display: none !important;
+  }
+  main[role="main"] {
+    padding: 0 !important;
+  }
+  section[id="profiles"], section[id="medicine"], section[id="directory"] {
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
